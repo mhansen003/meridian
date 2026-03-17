@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import PatternInsight from '@/components/PatternInsight';
-import { patterns, strategyHealth } from '@/lib/store';
-import type { Signal } from '@/lib/types';
+import DriftScoreCard from '@/components/DriftScoreCard';
+import ContradictionCard from '@/components/ContradictionCard';
+import { patterns, strategyHealth, strategies } from '@/lib/store';
+import type { Signal, DriftScore, Contradiction } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import {
   Brain,
@@ -12,6 +14,9 @@ import {
   TrendingDown,
   Minus,
   BarChart3,
+  Activity,
+  Loader2,
+  GitCompare,
 } from 'lucide-react';
 
 interface SignalsResponse {
@@ -20,13 +25,66 @@ interface SignalsResponse {
 
 export default function InsightsPage() {
   const [signalCount, setSignalCount] = useState<number | null>(null);
+  const [signals, setSignals] = useState<Signal[]>([]);
+  const [driftScores, setDriftScores] = useState<DriftScore[]>([]);
+  const [contradictions, setContradictions] = useState<Contradiction[]>([]);
+  const [driftLoading, setDriftLoading] = useState<string | null>(null);
+  const [contradictionLoading, setContradictionLoading] = useState(false);
 
   useEffect(() => {
     fetch('/api/signals')
       .then((r) => r.json() as Promise<SignalsResponse>)
-      .then((d) => setSignalCount(d.signals.length))
+      .then((d) => { setSignalCount(d.signals.length); setSignals(d.signals); })
+      .catch(console.error);
+
+    fetch('/api/drift')
+      .then((r) => r.json() as Promise<{ driftScores: DriftScore[] }>)
+      .then((d) => setDriftScores(d.driftScores))
+      .catch(console.error);
+
+    fetch('/api/contradictions')
+      .then((r) => r.json() as Promise<{ contradictions: Contradiction[] }>)
+      .then((d) => setContradictions(d.contradictions))
       .catch(console.error);
   }, []);
+
+  const detectDrift = async (strategyId: string) => {
+    setDriftLoading(strategyId);
+    try {
+      const res = await fetch('/api/drift', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ strategyId }),
+      });
+      const data = (await res.json()) as { driftScore: DriftScore };
+      setDriftScores((prev) => {
+        const idx = prev.findIndex((d) => d.strategyId === strategyId);
+        if (idx >= 0) {
+          const updated = [...prev];
+          updated[idx] = data.driftScore;
+          return updated;
+        }
+        return [...prev, data.driftScore];
+      });
+    } catch (err) {
+      console.error('Drift detection failed', err);
+    } finally {
+      setDriftLoading(null);
+    }
+  };
+
+  const detectContradictions = async () => {
+    setContradictionLoading(true);
+    try {
+      const res = await fetch('/api/contradictions', { method: 'POST' });
+      const data = (await res.json()) as { contradictions: Contradiction[] };
+      setContradictions((prev) => [...data.contradictions, ...prev]);
+    } catch (err) {
+      console.error('Contradiction detection failed', err);
+    } finally {
+      setContradictionLoading(false);
+    }
+  };
 
   const today = formatDate(new Date().toISOString());
   const urgentPattern = patterns[0];
@@ -90,6 +148,84 @@ export default function InsightsPage() {
             <PatternInsight key={pattern.id} pattern={pattern} />
           ))}
         </div>
+      </div>
+
+      {/* Strategy Drift */}
+      <div className="mb-8">
+        <div className="flex items-center gap-2 mb-4">
+          <Activity className="w-4 h-4 text-cyan-400" />
+          <h2 className="text-lg font-semibold text-white">Strategy Drift Detection</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {strategies.map((strategy) => {
+            const score = driftScores.find((d) => d.strategyId === strategy.id);
+            return (
+              <div key={strategy.id} className="space-y-2">
+                {score ? (
+                  <DriftScoreCard driftScore={score} strategyObjective={strategy.objective} />
+                ) : (
+                  <div className="p-4 rounded-xl border border-white/8 bg-white/3">
+                    <p className="text-xs text-white/50 mb-3 line-clamp-2">{strategy.objective}</p>
+                    <p className="text-xs text-white/30 mb-3">No drift analysis yet</p>
+                  </div>
+                )}
+                <button
+                  onClick={() => { void detectDrift(strategy.id); }}
+                  disabled={driftLoading === strategy.id}
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-cyan-500/30 hover:bg-cyan-500/5 text-xs text-white/60 hover:text-cyan-400 transition-all disabled:opacity-50"
+                >
+                  {driftLoading === strategy.id ? (
+                    <><Loader2 className="w-3 h-3 animate-spin" /> Analyzing...</>
+                  ) : (
+                    'Detect Drift'
+                  )}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Contradictions */}
+      <div className="mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <GitCompare className="w-4 h-4 text-amber-400" />
+            <h2 className="text-lg font-semibold text-white">Signal Contradictions</h2>
+            {contradictions.length > 0 && (
+              <span className="px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 text-xs">
+                {contradictions.length}
+              </span>
+            )}
+          </div>
+          <button
+            onClick={() => { void detectContradictions(); }}
+            disabled={contradictionLoading}
+            className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-amber-500/30 hover:bg-amber-500/5 text-xs text-white/60 hover:text-amber-400 transition-all disabled:opacity-50"
+          >
+            {contradictionLoading ? (
+              <><Loader2 className="w-3 h-3 animate-spin" /> Detecting...</>
+            ) : (
+              'Detect Contradictions'
+            )}
+          </button>
+        </div>
+        {contradictions.length === 0 ? (
+          <div className="p-6 rounded-xl border border-white/8 bg-white/3 text-center">
+            <p className="text-sm text-white/40">No contradictions detected yet. Click &ldquo;Detect Contradictions&rdquo; to analyze.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {contradictions.map((c) => (
+              <ContradictionCard
+                key={c.id}
+                contradiction={c}
+                signalA={signals.find((s) => s.id === c.signalIdA)}
+                signalB={signals.find((s) => s.id === c.signalIdB)}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Strategy Health Table */}

@@ -120,6 +120,11 @@ export default function HomePage() {
         <p className="text-sm text-white/25">
           Built for organizations that take execution seriously. &nbsp;·&nbsp; Apex Advisory Group Demo
         </p>
+        <div className="mt-3">
+          <Link href="/splash" className="text-xs text-white/20 hover:text-white/40 transition-colors">
+            View Intro →
+          </Link>
+        </div>
       </footer>
     </div>
   );

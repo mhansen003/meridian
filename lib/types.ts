@@ -19,6 +19,10 @@ export interface Signal {
   summary: string;
   relatedStrategy: string | null;
   timestamp: string;
+  anonymous?: boolean;
+  competitorTag?: string;
+  isExitInterview?: boolean;
+  theme?: string;
 }
 
 export interface Strategy {
@@ -53,4 +57,113 @@ export interface StrategyHealth {
   signalAlignment: number;
   supportingSignals: number;
   status: 'On Track' | 'At Risk' | 'Needs Attention';
+}
+
+export interface VelocityAlert {
+  id: string;
+  theme: string;
+  signalIds: string[];
+  detectedAt: string;
+  summary: string;
+}
+
+export interface DriftScore {
+  strategyId: string;
+  score: number;
+  alignedSignals: number;
+  misalignedSignals: number;
+  flaggedAt: string;
+  reasoning: string;
+}
+
+export interface Contradiction {
+  id: string;
+  signalIdA: string;
+  signalIdB: string;
+  roleA: string;
+  roleB: string;
+  summary: string;
+  detectedAt: string;
+}
+
+export interface OrgQuestion {
+  id: string;
+  question: string;
+  answer: string;
+  citations: string[];
+  askedAt: string;
+  askedBy: string;
+}
+
+export interface DecisionMemory {
+  id: string;
+  title: string;
+  rationale: string;
+  signalContext: string[];
+  strategyId: string | null;
+  madeAt: string;
+  resurface90: string;
+}
+
+export interface Playbook {
+  id: string;
+  triggeredByPattern: string;
+  title: string;
+  steps: string[];
+  owner: string;
+  createdAt: string;
+}
+
+export interface CompetitorDossier {
+  competitor: string;
+  signalIds: string[];
+  summary: string;
+  lastUpdated: string;
+}
+
+export interface StrategySimulation {
+  id: string;
+  strategyText: string;
+  authorRole: string;
+  predictedReaction: string;
+  alignmentScore: number;
+  risks: string[];
+  opportunities: string[];
+  simulatedAt: string;
+}
+
+export interface OrgDNA {
+  generatedAt: string;
+  profile: string;
+  traits: string[];
+  signalCount: number;
+}
+
+export interface BenchmarkData {
+  category: string;
+  orgScore: number;
+  percentile: number;
+  industryMedian: number;
+}
+
+export interface ExitInterview {
+  id: string;
+  role: string;
+  department: string;
+  tenureYears: number;
+  responses: { question: string; answer: string }[];
+  knowledgeExtract: string;
+  submittedAt: string;
+}
+
+export interface BoardPackage {
+  id: string;
+  generatedAt: string;
+  period: string;
+  executiveSummary: string;
+  topPatterns: string[];
+  strategyHealth: string;
+  keyRisks: string[];
+  keyOpportunities: string[];
+  rawMarkdown: string;
 }

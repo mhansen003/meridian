@@ -41,6 +41,9 @@ export default function PulsePage() {
   const [submitted, setSubmitted] = useState<{ category: SignalCategory; summary: string } | null>(null);
   const [recentSignals, setRecentSignals] = useState<Signal[]>([]);
   const [loadingSignals, setLoadingSignals] = useState(true);
+  const [isAnonymous, setIsAnonymous] = useState(false);
+  const [isCompetitorIntel, setIsCompetitorIntel] = useState(false);
+  const [competitorName, setCompetitorName] = useState('');
 
   useEffect(() => {
     fetch('/api/signals')
@@ -81,6 +84,8 @@ export default function PulsePage() {
           category: analysis.category,
           summary: analysis.summary,
           relatedStrategy: analysis.relatedStrategy,
+          anonymous: isAnonymous,
+          competitorTag: isCompetitorIntel && competitorName.trim() ? competitorName.trim() : undefined,
         }),
       });
 
@@ -158,6 +163,46 @@ export default function PulsePage() {
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-cyan-500/50 focus:outline-none focus:ring-1 focus:ring-cyan-500/30 text-white placeholder-white/25 text-sm resize-none transition-all"
           />
         </div>
+
+        {/* Options */}
+        <div className="space-y-2 mb-3">
+          <label className="flex items-center gap-2.5 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={isAnonymous}
+              onChange={(e) => setIsAnonymous(e.target.checked)}
+              className="w-4 h-4 rounded border-white/20 bg-white/5 text-cyan-500 cursor-pointer"
+            />
+            <span className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+              Submit anonymously <span className="text-white/30">(role still recorded internally)</span>
+            </span>
+          </label>
+
+          <label className="flex items-center gap-2.5 cursor-pointer group">
+            <input
+              type="checkbox"
+              checked={isCompetitorIntel}
+              onChange={(e) => setIsCompetitorIntel(e.target.checked)}
+              className="w-4 h-4 rounded border-white/20 bg-white/5 text-cyan-500 cursor-pointer"
+            />
+            <span className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+              Tag as competitor intel
+            </span>
+          </label>
+
+          {isCompetitorIntel && (
+            <div className="ml-6">
+              <input
+                type="text"
+                value={competitorName}
+                onChange={(e) => setCompetitorName(e.target.value)}
+                placeholder="Competitor name (e.g. McKinsey, Accenture)"
+                className="w-full px-3 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-orange-500/50 focus:outline-none text-white placeholder-white/25 text-sm transition-all"
+              />
+            </div>
+          )}
+        </div>
+
         <button
           type="submit"
           disabled={submitting || !signalText.trim()}

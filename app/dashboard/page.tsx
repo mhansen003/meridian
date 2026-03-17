@@ -4,28 +4,33 @@ import { useState, useEffect, useCallback } from 'react';
 import SignalCard from '@/components/SignalCard';
 import StrategyCard from '@/components/StrategyCard';
 import PatternInsight from '@/components/PatternInsight';
+import VelocityAlertBanner from '@/components/VelocityAlertBanner';
 import { patterns } from '@/lib/store';
-import type { Signal, Strategy } from '@/lib/types';
+import type { Signal, Strategy, VelocityAlert } from '@/lib/types';
 import { Activity, Target, Users, Brain, RefreshCw } from 'lucide-react';
 
 export default function DashboardPage() {
   const [signals, setSignals] = useState<Signal[]>([]);
   const [strategies, setStrategies] = useState<Strategy[]>([]);
+  const [velocityAlertsData, setVelocityAlertsData] = useState<VelocityAlert[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(new Date());
 
   const fetchData = useCallback(async () => {
     try {
-      const [signalsRes, strategiesRes] = await Promise.all([
+      const [signalsRes, strategiesRes, alertsRes] = await Promise.all([
         fetch('/api/signals'),
         fetch('/api/strategies'),
+        fetch('/api/velocity-alerts'),
       ]);
-      const [signalsData, strategiesData] = await Promise.all([
+      const [signalsData, strategiesData, alertsData] = await Promise.all([
         signalsRes.json() as Promise<{ signals: Signal[] }>,
         strategiesRes.json() as Promise<{ strategies: Strategy[] }>,
+        alertsRes.json() as Promise<{ alerts: VelocityAlert[] }>,
       ]);
       setSignals(signalsData.signals);
       setStrategies(strategiesData.strategies);
+      setVelocityAlertsData(alertsData.alerts);
       setLastRefresh(new Date());
     } catch (err) {
       console.error('Failed to fetch dashboard data', err);
@@ -42,6 +47,11 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-8">
+      {/* Velocity Alert Banners */}
+      {velocityAlertsData.slice(0, 3).map((alert) => (
+        <VelocityAlertBanner key={alert.id} alert={alert} />
+      ))}
+
       {/* Header */}
       <div className="flex items-start justify-between mb-8">
         <div>
