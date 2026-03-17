@@ -6,9 +6,9 @@ import Navigation from '@/components/Navigation';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Meridian — Where strategy meets signal.',
-  description: 'Meridian closes the loop between executive strategy and frontline execution — capturing signal from the ground up and translating strategy from the top down.',
-  keywords: 'organizational intelligence, strategy execution, employee signals, leadership',
+  title: 'Meridian — Where strategy meets observation.',
+  description: 'Meridian closes the loop between executive strategy and frontline execution — capturing observation from the ground up and translating strategy from the top down.',
+  keywords: 'organizational intelligence, strategy execution, employee observations, leadership',
 };
 
 export default function RootLayout({

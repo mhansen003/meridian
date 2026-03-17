@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals, competitorDossiers } from '@/lib/store';
+import { observations, competitorDossiers } from '@/lib/store';
 import type { CompetitorDossier } from '@/lib/types';
 
 export async function GET(request: NextRequest) {
@@ -26,20 +26,20 @@ interface DossierAIResult {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as DossierBody;
 
-  const competitorSignals = signals.filter((s) => s.competitorTag === body.competitor);
+  const competitorObservations = observations.filter((s) => s.competitorTag === body.competitor);
 
-  if (competitorSignals.length === 0) {
-    return NextResponse.json({ error: 'No signals found for this competitor' }, { status: 404 });
+  if (competitorObservations.length === 0) {
+    return NextResponse.json({ error: 'No observations found for this competitor' }, { status: 404 });
   }
 
-  const signalContext = competitorSignals
+  const observationContext = competitorObservations
     .map((s) => `[${s.role}]: ${s.text}`)
     .join('\n');
 
-  const prompt = `You are an organizational intelligence AI. Synthesize these internal employee signals about competitor "${body.competitor}" into a competitive dossier.
+  const prompt = `You are an organizational intelligence AI. Synthesize these internal employee observations about competitor "${body.competitor}" into a competitive dossier.
 
-Signals:
-${signalContext}
+Observations:
+${observationContext}
 
 Return JSON only:
 {
@@ -73,7 +73,7 @@ Return JSON only:
 
     const dossier: CompetitorDossier = {
       competitor: body.competitor,
-      signalIds: competitorSignals.map((s) => s.id),
+      observationIds: competitorObservations.map((s) => s.id),
       summary: result.summary,
       lastUpdated: new Date().toISOString(),
     };

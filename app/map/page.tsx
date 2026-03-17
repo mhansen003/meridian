@@ -7,9 +7,9 @@ import type { SignalCategory } from '@/lib/types';
 
 interface RoleNode {
   role: string;
-  signalCount: number;
+  observationCount: number;
   dominantCategory: SignalCategory;
-  lastSignalText: string;
+  lastObservationText: string;
 }
 
 const ORG_HIERARCHY = [
@@ -51,7 +51,7 @@ export default function MapPage() {
     return mapData.find((n) => n.role === role) ?? null;
   };
 
-  const maxSignals = Math.max(...mapData.map((n) => n.signalCount), 1);
+  const maxObservations = Math.max(...mapData.map((n) => n.observationCount), 1);
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-8">
@@ -60,7 +60,7 @@ export default function MapPage() {
         <h1 className="text-3xl font-bold text-white">Intelligence Map</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
-        Signal activity across your organizational structure. Node brightness indicates signal volume.
+        Observation activity across your organizational structure. Node brightness indicates observation volume.
       </p>
 
       {loading ? (
@@ -80,14 +80,14 @@ export default function MapPage() {
               <div className="flex justify-center gap-4 flex-wrap">
                 {tier.map((role) => {
                   const node = getNodeData(role);
-                  const intensity = node ? node.signalCount / maxSignals : 0;
+                  const intensity = node ? node.observationCount / maxObservations : 0;
                   const glow = node ? CATEGORY_GLOW[node.dominantCategory] ?? '' : '';
                   const catBg = node ? CATEGORY_BG[node.dominantCategory] ?? '' : '';
 
                   return (
                     <div
                       key={role}
-                      title={node ? `Last signal: ${node.lastSignalText}` : role}
+                      title={node ? `Last observation: ${node.lastObservationText}` : role}
                       className={`relative px-4 py-3 rounded-xl border transition-all cursor-default ${
                         node
                           ? `${catBg} ${glow} shadow-lg`
@@ -103,12 +103,12 @@ export default function MapPage() {
                       {node ? (
                         <div className="flex items-center justify-center gap-1.5">
                           <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${CATEGORY_COLORS[node.dominantCategory]}`}>
-                            {node.signalCount}
+                            {node.observationCount}
                           </span>
                           <span className="text-[10px] text-white/40">{node.dominantCategory}</span>
                         </div>
                       ) : (
-                        <p className="text-[10px] text-white/25 text-center">0 signals</p>
+                        <p className="text-[10px] text-white/25 text-center">0 observations</p>
                       )}
                     </div>
                   );

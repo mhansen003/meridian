@@ -1,4 +1,4 @@
-import type { Signal, Strategy, Pattern, StrategyHealth, Role, SignalCategory, VelocityAlert, DriftScore, Contradiction, OrgQuestion, DecisionMemory, Playbook, CompetitorDossier, StrategySimulation, OrgDNA, BenchmarkData, ExitInterview, BoardPackage } from './types';
+import type { Observation, Strategy, Pattern, StrategyHealth, Role, SignalCategory, VelocityAlert, DriftScore, Contradiction, OrgQuestion, DecisionMemory, Playbook, CompetitorDossier, StrategySimulation, OrgDNA, BenchmarkData, ExitInterview, BoardPackage } from './types';
 
 export const ROLES: Role[] = [
   'CEO',
@@ -36,8 +36,8 @@ export const strategies: Strategy[] = [
   },
 ];
 
-// ─── Seed Signals ─────────────────────────────────────────────────────────────
-export const signals: Signal[] = [
+// ─── Seed Observations ────────────────────────────────────────────────────────
+export const observations: Observation[] = [
   {
     id: 'sig-001',
     role: 'Account Manager',
@@ -104,7 +104,7 @@ export const signals: Signal[] = [
   {
     id: 'sig-008',
     role: 'HR Business Partner',
-    text: "Consultants are anxious about AI replacing their roles. Morale impact is showing up in our monthly pulse scores.",
+    text: "Consultants are anxious about AI replacing their roles. Morale impact is showing up in our monthly capture scores.",
     category: 'Culture',
     summary: 'AI role anxiety driving morale decline — emerging retention and engagement risk.',
     relatedStrategy: 'strat-003',
@@ -281,9 +281,9 @@ export const signals: Signal[] = [
   {
     id: 'sig-027',
     role: 'CEO',
-    text: "I got a call from a PE firm asking if we'd consider a strategic acqui-hire for our AI talent. That's both a compliment and a warning signal.",
+    text: "I got a call from a PE firm asking if we'd consider a strategic acqui-hire for our AI talent. That's both a compliment and a warning observation.",
     category: 'Risk',
-    summary: 'PE acqui-hire inquiry signals both AI talent valuation and retention risk.',
+    summary: 'PE acqui-hire inquiry captures both AI talent valuation and retention risk.',
     relatedStrategy: 'strat-003',
     timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24 * 27).toISOString(),
   },
@@ -315,7 +315,7 @@ export const patterns: Pattern[] = [
     id: 'pat-001',
     title: 'AI Capability Gap Threatening Pipeline',
     confidence: 'High',
-    signalCount: 3,
+    observationCount: 3,
     executiveAction: 'Prioritize AI narrative development and credential building before next sales cycle. Assign a Partner to own the AI positioning story.',
     relatedStrategy: 'Build AI-native service offerings',
     category: 'Risk',
@@ -324,7 +324,7 @@ export const patterns: Pattern[] = [
     id: 'pat-002',
     title: 'Mid-Market CFO Buying Window Is Open',
     confidence: 'High',
-    signalCount: 2,
+    observationCount: 2,
     executiveAction: 'Develop a CFO-specific AI ROI framework and fast-track it to Account Managers. This is a short window.',
     relatedStrategy: 'Accelerate mid-market client acquisition',
     category: 'Opportunity',
@@ -333,7 +333,7 @@ export const patterns: Pattern[] = [
     id: 'pat-003',
     title: 'Framework Efficiency Gains Partially Offset by Customization Friction',
     confidence: 'Medium',
-    signalCount: 3,
+    observationCount: 3,
     executiveAction: 'Commission a lite framework variant for sub-$100K engagements. Review scoping process with Practice Leads.',
     relatedStrategy: 'Reduce project delivery cycle time',
     category: 'Friction',
@@ -342,7 +342,7 @@ export const patterns: Pattern[] = [
     id: 'pat-004',
     title: 'Internal AI Anxiety Risk to Retention',
     confidence: 'Medium',
-    signalCount: 1,
+    observationCount: 1,
     executiveAction: 'Address AI transformation narrative internally before it compounds. Consultants need to be positioned as AI-enabled, not replaced.',
     relatedStrategy: 'Build AI-native service offerings',
     category: 'Culture',
@@ -354,22 +354,22 @@ export const strategyHealth: StrategyHealth[] = [
   {
     strategyId: 'strat-001',
     objective: 'Accelerate mid-market client acquisition',
-    signalAlignment: 72,
-    supportingSignals: 2,
+    observationAlignment: 72,
+    supportingObservations: 2,
     status: 'On Track',
   },
   {
     strategyId: 'strat-002',
     objective: 'Reduce delivery cycle time by 20%',
-    signalAlignment: 58,
-    supportingSignals: 3,
+    observationAlignment: 58,
+    supportingObservations: 3,
     status: 'Needs Attention',
   },
   {
     strategyId: 'strat-003',
     objective: 'Build AI-native service offerings',
-    signalAlignment: 45,
-    supportingSignals: 4,
+    observationAlignment: 45,
+    supportingObservations: 4,
     status: 'At Risk',
   },
 ];
@@ -410,7 +410,7 @@ export const boardPackages: BoardPackage[] = [];
 export const webhookEvents: { id: string; source: string; text: string; receivedAt: string }[] = [];
 
 export const benchmarkData: BenchmarkData[] = [
-  { category: 'Signal Capture Rate', orgScore: 43, percentile: 43, industryMedian: 58 },
+  { category: 'Observation Capture Rate', orgScore: 43, percentile: 43, industryMedian: 58 },
   { category: 'Strategy Alignment', orgScore: 67, percentile: 61, industryMedian: 55 },
   { category: 'Pattern Detection Velocity', orgScore: 78, percentile: 72, industryMedian: 60 },
   { category: 'Cross-Role Coverage', orgScore: 88, percentile: 81, industryMedian: 70 },

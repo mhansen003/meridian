@@ -29,8 +29,8 @@ export default function PatternInsight({ pattern }: PatternInsightProps) {
           </span>
         </div>
         <div className="flex items-center gap-1 text-xs text-white/40">
-          <span className="font-mono text-white/60">{pattern.signalCount}</span>
-          <span>signals</span>
+          <span className="font-mono text-white/60">{pattern.observationCount}</span>
+          <span>observations</span>
         </div>
       </div>
 

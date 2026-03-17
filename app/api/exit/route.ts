@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { exitInterviews, signals } from '@/lib/store';
-import type { ExitInterview, Signal } from '@/lib/types';
+import { exitInterviews, observations } from '@/lib/store';
+import type { ExitInterview, Observation } from '@/lib/types';
 
 export async function GET() {
   // Anonymized — no role shown
@@ -74,10 +74,10 @@ Return JSON only:
 
     exitInterviews.unshift(interview);
 
-    // Also push as a signal
-    const signal: Signal = {
+    // Also push as an observation
+    const observation: Observation = {
       id: `sig-exit-${Date.now()}`,
-      role: body.role as Signal['role'],
+      role: body.role as Observation['role'],
       text: result.knowledgeExtract,
       category: 'Culture',
       summary: `Exit interview knowledge extract — ${body.tenureYears}yr ${body.department} ${body.role}`,
@@ -85,7 +85,7 @@ Return JSON only:
       timestamp: new Date().toISOString(),
       isExitInterview: true,
     };
-    signals.push(signal);
+    observations.push(observation);
 
     return NextResponse.json({ interview }, { status: 201 });
   } catch {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals, webhookEvents } from '@/lib/store';
-import type { Signal } from '@/lib/types';
+import { observations, webhookEvents } from '@/lib/store';
+import type { Observation } from '@/lib/types';
 
 interface SlackPayload {
   text?: string;
@@ -19,16 +19,16 @@ export async function POST(request: NextRequest) {
   const text = body.text ?? body.event?.text ?? '';
 
   if (text) {
-    const signal: Signal = {
+    const observation: Observation = {
       id: `sig-slack-${Date.now()}`,
       role: 'Senior Consultant',
       text: text.slice(0, 500),
       category: 'Market Intel',
-      summary: 'Signal captured via Slack integration.',
+      summary: 'Observation captured via Slack integration.',
       relatedStrategy: null,
       timestamp: new Date().toISOString(),
     };
-    signals.push(signal);
+    observations.push(observation);
 
     webhookEvents.unshift({
       id: `we-${Date.now()}`,

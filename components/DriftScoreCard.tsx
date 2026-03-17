@@ -36,9 +36,9 @@ export default function DriftScoreCard({ driftScore, strategyObjective }: DriftS
         />
       </div>
       <div className="flex gap-3 text-xs text-white/40 mb-3">
-        <span className="text-emerald-400">{driftScore.alignedSignals} aligned</span>
+        <span className="text-emerald-400">{driftScore.alignedObservations} aligned</span>
         <span>·</span>
-        <span className="text-red-400">{driftScore.misalignedSignals} misaligned</span>
+        <span className="text-red-400">{driftScore.misalignedObservations} misaligned</span>
       </div>
       <p className="text-xs text-white/50 leading-relaxed italic">{driftScore.reasoning}</p>
     </div>

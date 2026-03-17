@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals, strategies, driftScores } from '@/lib/store';
+import { observations, strategies, driftScores } from '@/lib/store';
 import type { DriftScore } from '@/lib/types';
 
 export async function GET() {
@@ -12,8 +12,8 @@ interface DriftBody {
 
 interface DriftAIResult {
   score: number;
-  alignedSignals: number;
-  misalignedSignals: number;
+  alignedObservations: number;
+  misalignedObservations: number;
   reasoning: string;
 }
 
@@ -24,23 +24,23 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Strategy not found' }, { status: 404 });
   }
 
-  const signalContext = signals
+  const observationContext = observations
     .slice(-30)
     .map((s) => `[${s.role}] ${s.text}`)
     .join('\n');
 
-  const prompt = `You are an organizational intelligence AI. Evaluate the alignment of the following signals with this strategic objective.
+  const prompt = `You are an organizational intelligence AI. Evaluate the alignment of the following observations with this strategic objective.
 
 Strategy: "${strategy.objective}"
 
-Recent signals:
-${signalContext}
+Recent observations:
+${observationContext}
 
 Return JSON only:
 {
   "score": <0-100 integer, 100 = perfectly aligned>,
-  "alignedSignals": <count of signals supporting the strategy>,
-  "misalignedSignals": <count of signals contradicting or creating friction>,
+  "alignedObservations": <count of observations supporting the strategy>,
+  "misalignedObservations": <count of observations contradicting or creating friction>,
   "reasoning": "<2-3 sentence explanation>"
 }`;
 
@@ -69,8 +69,8 @@ Return JSON only:
     const driftScore: DriftScore = {
       strategyId: body.strategyId,
       score: result.score,
-      alignedSignals: result.alignedSignals,
-      misalignedSignals: result.misalignedSignals,
+      alignedObservations: result.alignedObservations,
+      misalignedObservations: result.misalignedObservations,
       flaggedAt: new Date().toISOString(),
       reasoning: result.reasoning,
     };

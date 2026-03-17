@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals, decisionMemories } from '@/lib/store';
+import { observations, decisionMemories } from '@/lib/store';
 import type { DecisionMemory } from '@/lib/types';
 
 export async function GET() {
@@ -20,14 +20,14 @@ interface DecisionBody {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as DecisionBody;
 
-  const signalContext = signals.slice(-15).map((s) => s.id);
+  const observationContext = observations.slice(-15).map((s) => s.id);
   const resurface90 = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString();
 
   const decision: DecisionMemory = {
     id: `dec-${Date.now()}`,
     title: body.title,
     rationale: body.rationale,
-    signalContext,
+    observationContext,
     strategyId: body.strategyId,
     madeAt: new Date().toISOString(),
     resurface90,

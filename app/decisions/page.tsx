@@ -55,7 +55,7 @@ export default function DecisionsPage() {
         <h1 className="text-3xl font-bold text-white">Decision Memory</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
-        Record decisions with their signal context. Meridian resurfaces them after 90 days for reflection.
+        Record decisions with their observation context. Meridian resurfaces them after 90 days for reflection.
       </p>
 
       {/* Record a Decision */}
@@ -78,7 +78,7 @@ export default function DecisionsPage() {
               value={rationale}
               onChange={(e) => setRationale(e.target.value)}
               rows={3}
-              placeholder="Why was this decision made? What signals informed it?"
+              placeholder="Why was this decision made? What observations informed it?"
               className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none text-white placeholder-white/25 text-sm resize-none transition-all"
             />
           </div>
@@ -144,13 +144,13 @@ export default function DecisionsPage() {
                   <div className="px-4 pb-4 border-t border-white/8">
                     <p className="text-sm text-white/70 leading-relaxed mt-3 mb-3">{d.rationale}</p>
                     <div>
-                      <p className="text-xs text-white/30 uppercase tracking-wider mb-1.5">Signal context at time of decision</p>
+                      <p className="text-xs text-white/30 uppercase tracking-wider mb-1.5">Observation context at time of decision</p>
                       <div className="flex gap-1.5 flex-wrap">
-                        {d.signalContext.slice(0, 8).map((sid) => (
+                        {d.observationContext.slice(0, 8).map((sid) => (
                           <span key={sid} className="px-2 py-0.5 rounded-full bg-white/8 text-white/40 text-xs font-mono">{sid}</span>
                         ))}
-                        {d.signalContext.length > 8 && (
-                          <span className="px-2 py-0.5 rounded-full bg-white/8 text-white/30 text-xs">+{d.signalContext.length - 8} more</span>
+                        {d.observationContext.length > 8 && (
+                          <span className="px-2 py-0.5 rounded-full bg-white/8 text-white/30 text-xs">+{d.observationContext.length - 8} more</span>
                         )}
                       </div>
                     </div>

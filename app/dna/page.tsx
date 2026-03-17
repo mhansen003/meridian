@@ -4,13 +4,9 @@ import { useState, useEffect } from 'react';
 import type { OrgDNA } from '@/lib/types';
 import { Dna, Loader2, Sparkles } from 'lucide-react';
 
-interface SignalCountResponse {
-  signals: { length: number }[];
-}
-
 export default function DNAPage() {
   const [dna, setDna] = useState<OrgDNA | null>(null);
-  const [signalCount, setSignalCount] = useState(0);
+  const [observationCount, setObservationCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [generating, setGenerating] = useState(false);
   const [error, setError] = useState('');
@@ -18,14 +14,14 @@ export default function DNAPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [dnaRes, signalsRes] = await Promise.all([
+        const [dnaRes, observationsRes] = await Promise.all([
           fetch('/api/dna'),
-          fetch('/api/signals'),
+          fetch('/api/observations'),
         ]);
         const dnaData = (await dnaRes.json()) as { dna: OrgDNA | null };
-        const signalsData = (await signalsRes.json()) as { signals: unknown[] };
+        const observationsData = (await observationsRes.json()) as { observations: unknown[] };
         setDna(dnaData.dna);
-        setSignalCount(signalsData.signals.length);
+        setObservationCount(observationsData.observations.length);
       } catch (err) {
         console.error('Failed to load DNA page', err);
       } finally {
@@ -84,17 +80,17 @@ export default function DNAPage() {
         <div className="p-8 rounded-2xl border border-violet-500/20 bg-violet-500/5 text-center">
           <Dna className="w-12 h-12 text-violet-400/40 mx-auto mb-4" />
           <p className="text-white/60 mb-2">Generate your DNA Profile from</p>
-          <p className="text-3xl font-bold text-white mb-2">{signalCount}</p>
-          <p className="text-white/40 text-sm mb-6">captured signals</p>
+          <p className="text-3xl font-bold text-white mb-2">{observationCount}</p>
+          <p className="text-white/40 text-sm mb-6">captured observations</p>
           <button
             onClick={() => { void handleGenerate(); }}
-            disabled={generating || signalCount < 10}
+            disabled={generating || observationCount < 10}
             className="flex items-center justify-center gap-2 mx-auto px-8 py-3 rounded-xl bg-violet-500 hover:bg-violet-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition-all shadow-lg shadow-violet-500/25"
           >
             {generating ? <><Loader2 className="w-4 h-4 animate-spin" /> Generating...</> : <><Sparkles className="w-4 h-4" /> Generate Profile →</>}
           </button>
-          {signalCount < 10 && (
-            <p className="text-xs text-white/30 mt-3">Need at least 10 signals to generate DNA profile.</p>
+          {observationCount < 10 && (
+            <p className="text-xs text-white/30 mt-3">Need at least 10 observations to generate DNA profile.</p>
           )}
         </div>
       ) : (
@@ -122,7 +118,7 @@ export default function DNAPage() {
 
           {/* Metadata */}
           <div className="flex items-center justify-between text-xs text-white/30">
-            <span>Based on {dna.signalCount} signals</span>
+            <span>Based on {dna.observationCount} observations</span>
             <span>Last generated: {new Date(dna.generatedAt).toLocaleDateString()}</span>
           </div>
 

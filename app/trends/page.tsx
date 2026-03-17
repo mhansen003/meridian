@@ -31,9 +31,9 @@ export default function TrendsPage() {
         <div>
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp className="w-5 h-5 text-blue-400" />
-            <h1 className="text-3xl font-bold text-white">Signal Trends</h1>
+            <h1 className="text-3xl font-bold text-white">Observation Trends</h1>
           </div>
-          <p className="text-white/40 text-sm">Signal volume by category over time.</p>
+          <p className="text-white/40 text-sm">Observation volume by category over time.</p>
         </div>
         <div className="flex items-center gap-2">
           {[7, 14, 30].map((d) => (

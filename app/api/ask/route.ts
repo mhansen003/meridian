@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals, orgQuestions } from '@/lib/store';
+import { observations, orgQuestions } from '@/lib/store';
 import type { OrgQuestion } from '@/lib/types';
 
 export async function GET() {
@@ -19,24 +19,24 @@ interface AskAIResult {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as AskBody;
 
-  const signalContext = signals
+  const observationContext = observations
     .map((s) => `ID: ${s.id} | Role: ${s.role} | "${s.text}"`)
     .join('\n');
 
-  const prompt = `You are an organizational intelligence AI with access to employee signals from Apex Advisory Group.
+  const prompt = `You are an organizational intelligence AI with access to employee observations from Apex Advisory Group.
 
-Employee signals:
-${signalContext}
+Employee observations:
+${observationContext}
 
 Question: "${body.question}"
 
-Answer this question using ONLY the signal data above. Return JSON only:
+Answer this question using ONLY the observation data above. Return JSON only:
 {
-  "answer": "<comprehensive answer based on signals>",
-  "citations": ["<signal id 1>", "<signal id 2>"]
+  "answer": "<comprehensive answer based on observations>",
+  "citations": ["<observation id 1>", "<observation id 2>"]
 }
 
-Cite the 2-4 most relevant signal IDs that support your answer.`;
+Cite the 2-4 most relevant observation IDs that support your answer.`;
 
   try {
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {

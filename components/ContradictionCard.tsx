@@ -1,13 +1,13 @@
-import type { Contradiction, Signal } from '@/lib/types';
+import type { Contradiction, Observation } from '@/lib/types';
 import { ROLE_COLORS } from '@/lib/store';
 
 interface ContradictionCardProps {
   contradiction: Contradiction;
-  signalA?: Signal;
-  signalB?: Signal;
+  observationA?: Observation;
+  observationB?: Observation;
 }
 
-export default function ContradictionCard({ contradiction, signalA, signalB }: ContradictionCardProps) {
+export default function ContradictionCard({ contradiction, observationA, observationB }: ContradictionCardProps) {
   return (
     <div className="p-4 rounded-xl border border-amber-500/20 bg-amber-500/5">
       <div className="grid grid-cols-2 gap-3 mb-3">
@@ -16,7 +16,7 @@ export default function ContradictionCard({ contradiction, signalA, signalB }: C
             {contradiction.roleA}
           </span>
           <p className="text-xs text-white/70 leading-relaxed">
-            &ldquo;{signalA ? signalA.text.slice(0, 120) + (signalA.text.length > 120 ? '...' : '') : contradiction.signalIdA}&rdquo;
+            &ldquo;{observationA ? observationA.text.slice(0, 120) + (observationA.text.length > 120 ? '...' : '') : contradiction.observationIdA}&rdquo;
           </p>
         </div>
         <div className="p-3 rounded-lg bg-white/3 border border-white/8">
@@ -24,7 +24,7 @@ export default function ContradictionCard({ contradiction, signalA, signalB }: C
             {contradiction.roleB}
           </span>
           <p className="text-xs text-white/70 leading-relaxed">
-            &ldquo;{signalB ? signalB.text.slice(0, 120) + (signalB.text.length > 120 ? '...' : '') : contradiction.signalIdB}&rdquo;
+            &ldquo;{observationB ? observationB.text.slice(0, 120) + (observationB.text.length > 120 ? '...' : '') : contradiction.observationIdB}&rdquo;
           </p>
         </div>
       </div>

@@ -11,7 +11,7 @@ export type Role =
   | 'Operations Manager'
   | 'HR Business Partner';
 
-export interface Signal {
+export interface Observation {
   id: string;
   role: Role;
   text: string;
@@ -45,7 +45,7 @@ export interface Pattern {
   id: string;
   title: string;
   confidence: 'High' | 'Medium' | 'Low';
-  signalCount: number;
+  observationCount: number;
   executiveAction: string;
   relatedStrategy: string;
   category: SignalCategory;
@@ -54,15 +54,15 @@ export interface Pattern {
 export interface StrategyHealth {
   strategyId: string;
   objective: string;
-  signalAlignment: number;
-  supportingSignals: number;
+  observationAlignment: number;
+  supportingObservations: number;
   status: 'On Track' | 'At Risk' | 'Needs Attention';
 }
 
 export interface VelocityAlert {
   id: string;
   theme: string;
-  signalIds: string[];
+  observationIds: string[];
   detectedAt: string;
   summary: string;
 }
@@ -70,16 +70,16 @@ export interface VelocityAlert {
 export interface DriftScore {
   strategyId: string;
   score: number;
-  alignedSignals: number;
-  misalignedSignals: number;
+  alignedObservations: number;
+  misalignedObservations: number;
   flaggedAt: string;
   reasoning: string;
 }
 
 export interface Contradiction {
   id: string;
-  signalIdA: string;
-  signalIdB: string;
+  observationIdA: string;
+  observationIdB: string;
   roleA: string;
   roleB: string;
   summary: string;
@@ -99,7 +99,7 @@ export interface DecisionMemory {
   id: string;
   title: string;
   rationale: string;
-  signalContext: string[];
+  observationContext: string[];
   strategyId: string | null;
   madeAt: string;
   resurface90: string;
@@ -116,7 +116,7 @@ export interface Playbook {
 
 export interface CompetitorDossier {
   competitor: string;
-  signalIds: string[];
+  observationIds: string[];
   summary: string;
   lastUpdated: string;
 }
@@ -136,7 +136,7 @@ export interface OrgDNA {
   generatedAt: string;
   profile: string;
   traits: string[];
-  signalCount: number;
+  observationCount: number;
 }
 
 export interface BenchmarkData {

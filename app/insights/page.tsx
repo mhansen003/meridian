@@ -5,7 +5,7 @@ import PatternInsight from '@/components/PatternInsight';
 import DriftScoreCard from '@/components/DriftScoreCard';
 import ContradictionCard from '@/components/ContradictionCard';
 import { patterns, strategyHealth, strategies } from '@/lib/store';
-import type { Signal, DriftScore, Contradiction } from '@/lib/types';
+import type { Observation, DriftScore, Contradiction } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import {
   Brain,
@@ -19,22 +19,22 @@ import {
   GitCompare,
 } from 'lucide-react';
 
-interface SignalsResponse {
-  signals: Signal[];
+interface ObservationsResponse {
+  observations: Observation[];
 }
 
 export default function InsightsPage() {
-  const [signalCount, setSignalCount] = useState<number | null>(null);
-  const [signals, setSignals] = useState<Signal[]>([]);
+  const [observationCount, setObservationCount] = useState<number | null>(null);
+  const [observations, setObservations] = useState<Observation[]>([]);
   const [driftScores, setDriftScores] = useState<DriftScore[]>([]);
   const [contradictions, setContradictions] = useState<Contradiction[]>([]);
   const [driftLoading, setDriftLoading] = useState<string | null>(null);
   const [contradictionLoading, setContradictionLoading] = useState(false);
 
   useEffect(() => {
-    fetch('/api/signals')
-      .then((r) => r.json() as Promise<SignalsResponse>)
-      .then((d) => { setSignalCount(d.signals.length); setSignals(d.signals); })
+    fetch('/api/observations')
+      .then((r) => r.json() as Promise<ObservationsResponse>)
+      .then((d) => { setObservationCount(d.observations.length); setObservations(d.observations); })
       .catch(console.error);
 
     fetch('/api/drift')
@@ -102,9 +102,9 @@ export default function InsightsPage() {
         </div>
         <div className="text-right">
           <div className="text-2xl font-bold text-white">
-            {signalCount !== null ? signalCount : '—'}
+            {observationCount !== null ? observationCount : '—'}
           </div>
-          <div className="text-xs text-white/40">signals analyzed</div>
+          <div className="text-xs text-white/40">observations analyzed</div>
         </div>
       </div>
 
@@ -126,7 +126,7 @@ export default function InsightsPage() {
               {urgentPattern.executiveAction}
             </p>
             <div className="flex items-center gap-3 text-xs text-white/40">
-              <span>{urgentPattern.signalCount} supporting signals</span>
+              <span>{urgentPattern.observationCount} supporting observations</span>
               <span>·</span>
               <span className="text-red-400 font-medium">{urgentPattern.confidence} confidence</span>
             </div>
@@ -191,7 +191,7 @@ export default function InsightsPage() {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <GitCompare className="w-4 h-4 text-amber-400" />
-            <h2 className="text-lg font-semibold text-white">Signal Contradictions</h2>
+            <h2 className="text-lg font-semibold text-white">Observation Contradictions</h2>
             {contradictions.length > 0 && (
               <span className="px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 text-xs">
                 {contradictions.length}
@@ -220,8 +220,8 @@ export default function InsightsPage() {
               <ContradictionCard
                 key={c.id}
                 contradiction={c}
-                signalA={signals.find((s) => s.id === c.signalIdA)}
-                signalB={signals.find((s) => s.id === c.signalIdB)}
+                observationA={observations.find((s) => s.id === c.observationIdA)}
+                observationB={observations.find((s) => s.id === c.observationIdB)}
               />
             ))}
           </div>
@@ -242,10 +242,10 @@ export default function InsightsPage() {
                   Strategy
                 </th>
                 <th className="text-left px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wider">
-                  Signal Alignment
+                  Observation Alignment
                 </th>
                 <th className="text-left px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wider">
-                  Signals
+                  Observations
                 </th>
                 <th className="text-left px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wider">
                   Status
@@ -266,20 +266,20 @@ export default function InsightsPage() {
                       <div className="flex-1 h-1.5 rounded-full bg-white/8 max-w-[80px]">
                         <div
                           className={`h-full rounded-full transition-all ${
-                            sh.signalAlignment >= 70
+                            sh.observationAlignment >= 70
                               ? 'bg-emerald-400'
-                              : sh.signalAlignment >= 50
+                              : sh.observationAlignment >= 50
                               ? 'bg-amber-400'
                               : 'bg-red-400'
                           }`}
-                          style={{ width: `${sh.signalAlignment}%` }}
+                          style={{ width: `${sh.observationAlignment}%` }}
                         />
                       </div>
-                      <span className="text-xs text-white/50 font-mono">{sh.signalAlignment}%</span>
+                      <span className="text-xs text-white/50 font-mono">{sh.observationAlignment}%</span>
                     </div>
                   </td>
                   <td className="px-4 py-4 text-sm text-white/50 font-mono">
-                    {sh.supportingSignals}
+                    {sh.supportingObservations}
                   </td>
                   <td className="px-4 py-4">
                     <StatusBadge status={sh.status} />

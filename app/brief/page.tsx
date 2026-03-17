@@ -45,7 +45,7 @@ export default function BriefPage() {
         <h1 className="text-3xl font-bold text-white">Your Daily Brief</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
-        Get a role-specific intelligence briefing grounded in your organization&apos;s live signal data.
+        Get a role-specific intelligence briefing grounded in your organization&apos;s live observation data.
       </p>
 
       <div className="flex gap-3 mb-8">

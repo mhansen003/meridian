@@ -11,21 +11,21 @@ export default function BoardPage() {
   const [generating, setGenerating] = useState(false);
   const [packages, setPackages] = useState<BoardPackage[]>([]);
   const [currentPackage, setCurrentPackage] = useState<BoardPackage | null>(null);
-  const [signalCount, setSignalCount] = useState(0);
+  const [observationCount, setObservationCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [expandedPkg, setExpandedPkg] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [pkgsRes, signalsRes] = await Promise.all([
+        const [pkgsRes, observationsRes] = await Promise.all([
           fetch('/api/board'),
-          fetch('/api/signals'),
+          fetch('/api/observations'),
         ]);
         const pkgsData = (await pkgsRes.json()) as { packages: BoardPackage[] };
-        const signalsData = (await signalsRes.json()) as { signals: unknown[] };
+        const observationsData = (await observationsRes.json()) as { observations: unknown[] };
         setPackages(pkgsData.packages);
-        setSignalCount(signalsData.signals.length);
+        setObservationCount(observationsData.observations.length);
       } catch (err) {
         console.error('Failed to load board page', err);
       } finally {
@@ -73,7 +73,7 @@ export default function BoardPage() {
         <h1 className="text-3xl font-bold text-white">Board Intelligence Package</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
-        AI-generated board-ready intelligence synthesis from your organizational signal data.
+        AI-generated board-ready intelligence synthesis from your organizational observation data.
       </p>
 
       {/* Generator */}
@@ -94,7 +94,7 @@ export default function BoardPage() {
             className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold transition-all"
           >
             {generating ? (
-              <><Loader2 className="w-4 h-4 animate-spin" /> Compiling intelligence across {signalCount} signals...</>
+              <><Loader2 className="w-4 h-4 animate-spin" /> Compiling intelligence across {observationCount} observations...</>
             ) : (
               'Generate Package →'
             )}

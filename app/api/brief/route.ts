@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals, briefCache } from '@/lib/store';
+import { observations, briefCache } from '@/lib/store';
 
 interface BriefAIResult {
   bullets: string[];
@@ -22,22 +22,22 @@ interface BriefBody {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as BriefBody;
 
-  const roleSignals = signals.filter((s) => s.role === body.role);
-  const otherSignals = signals.filter((s) => s.role !== body.role).slice(-10);
-  const allRelevant = [...roleSignals, ...otherSignals];
+  const roleObservations = observations.filter((s) => s.role === body.role);
+  const otherObservations = observations.filter((s) => s.role !== body.role).slice(-10);
+  const allRelevant = [...roleObservations, ...otherObservations];
 
-  const signalContext = allRelevant
+  const observationContext = allRelevant
     .map((s) => `[${s.role}] (${s.category}): ${s.text}`)
     .join('\n');
 
   const prompt = `You are an organizational intelligence AI generating a daily brief for a ${body.role} at Apex Advisory Group.
 
-Recent organizational signals:
-${signalContext}
+Recent organizational observations:
+${observationContext}
 
 Generate a concise daily brief with exactly 3 bullet points. Each bullet should:
 - Be directly relevant to a ${body.role}'s daily priorities
-- Reference specific signal intelligence
+- Reference specific observation intelligence
 - Be actionable
 
 Return JSON only:

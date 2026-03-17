@@ -17,14 +17,14 @@ interface OKRAIResult {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as OKRBody;
 
-  const prompt = `You are an organizational intelligence AI. Parse this OKR text and map each key result to signal categories and employee prompts.
+  const prompt = `You are an organizational intelligence AI. Parse this OKR text and map each key result to observation categories and employee prompts.
 
 OKR Text:
 ${body.okrText}
 
 For each key result, identify:
-1. Which signal categories it maps to (from: Risk, Opportunity, Friction, Market Intel, Culture)
-2. 3 employee prompt questions to use in a Pulse campaign
+1. Which observation categories it maps to (from: Risk, Opportunity, Friction, Market Intel, Culture)
+2. 3 employee prompt questions to use in a Capture campaign
 
 Return JSON only:
 {

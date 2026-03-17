@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals } from '@/lib/store';
+import { observations } from '@/lib/store';
 import type { SignalCategory } from '@/lib/types';
 
 const CATEGORIES: SignalCategory[] = ['Risk', 'Opportunity', 'Friction', 'Market Intel', 'Culture'];
@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   const days = parseInt(searchParams.get('days') ?? '30', 10);
 
   const cutoff = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
-  const filtered = signals.filter((s) => new Date(s.timestamp) >= cutoff);
+  const filtered = observations.filter((s) => new Date(s.timestamp) >= cutoff);
 
   // Build date buckets
   const dateMap: Record<string, Record<SignalCategory, number>> = {};
@@ -20,10 +20,10 @@ export async function GET(request: NextRequest) {
     dateMap[key] = { Risk: 0, Opportunity: 0, Friction: 0, 'Market Intel': 0, Culture: 0 };
   }
 
-  for (const signal of filtered) {
-    const key = signal.timestamp.split('T')[0] ?? '';
+  for (const observation of filtered) {
+    const key = observation.timestamp.split('T')[0] ?? '';
     if (dateMap[key]) {
-      dateMap[key][signal.category]++;
+      dateMap[key][observation.category]++;
     }
   }
 

@@ -24,7 +24,7 @@ export default function IntegrationsPage() {
 
   const slackPayload = `{
   "text": "Just lost a deal to a competitor on pricing",
-  "username": "Signal Bot",
+  "username": "Observation Bot",
   "channel": "#intel-feed"
 }`;
 
@@ -44,7 +44,7 @@ export default function IntegrationsPage() {
         <h1 className="text-3xl font-bold text-white">Integrations</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
-        Connect Meridian to your existing tools to automatically capture signals from conversations, deals, and team activity.
+        Connect Meridian to your existing tools to automatically capture observations from conversations, deals, and team activity.
       </p>
 
       <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -65,7 +65,7 @@ export default function IntegrationsPage() {
             </div>
           </div>
           <p className="text-sm text-white/50 mb-3 leading-relaxed">
-            Post signals directly from Slack channels into Meridian&apos;s intelligence feed.
+            Post observations directly from Slack channels into Meridian&apos;s intelligence feed.
           </p>
           <div className="mb-3">
             <p className="text-xs text-white/30 uppercase tracking-wider mb-1.5">Webhook URL</p>
@@ -104,7 +104,7 @@ export default function IntegrationsPage() {
             </div>
           </div>
           <p className="text-sm text-white/50 mb-3 leading-relaxed">
-            Capture signals from Teams conversations and meeting notes.
+            Capture observations from Teams conversations and meeting notes.
           </p>
           <div className="mb-3">
             <p className="text-xs text-white/30 uppercase tracking-wider mb-1.5">Webhook URL</p>
@@ -133,7 +133,7 @@ export default function IntegrationsPage() {
         {webhookEvents.length === 0 ? (
           <div className="p-6 rounded-xl border border-white/8 text-center">
             <p className="text-sm text-white/40">No webhook events received yet.</p>
-            <p className="text-xs text-white/25 mt-1">Events will appear here when signals arrive via webhook.</p>
+            <p className="text-xs text-white/25 mt-1">Events will appear here when observations arrive via webhook.</p>
           </div>
         ) : (
           <div className="space-y-3">

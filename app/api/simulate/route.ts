@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals, strategySimulations } from '@/lib/store';
+import { observations, strategySimulations } from '@/lib/store';
 import type { StrategySimulation } from '@/lib/types';
 
 export async function GET() {
@@ -21,23 +21,23 @@ interface SimulateAIResult {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as SimulateBody;
 
-  const signalContext = signals
+  const observationContext = observations
     .slice(-25)
     .map((s) => `[${s.role}] (${s.category}): ${s.text}`)
     .join('\n');
 
-  const prompt = `You are an organizational intelligence AI. Test this proposed strategy against current organizational signals to predict how it will land.
+  const prompt = `You are an organizational intelligence AI. Test this proposed strategy against current organizational observations to predict how it will land.
 
 Proposed Strategy (from ${body.authorRole}):
 "${body.strategyText}"
 
-Current organizational signals:
-${signalContext}
+Current organizational observations:
+${observationContext}
 
 Return JSON only:
 {
   "predictedReaction": "<2-3 sentence narrative of how the organization will likely react>",
-  "alignmentScore": <0-100 integer, how well this aligns with current signal patterns>,
+  "alignmentScore": <0-100 integer, how well this aligns with current observation patterns>,
   "risks": ["<risk 1>", "<risk 2>", "<risk 3>"],
   "opportunities": ["<opportunity 1>", "<opportunity 2>", "<opportunity 3>"]
 }`;

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { signals, orgDNA, setOrgDNA } from '@/lib/store';
+import { observations, orgDNA, setOrgDNA } from '@/lib/store';
 import type { OrgDNA } from '@/lib/types';
 
 export async function GET() {
@@ -12,25 +12,25 @@ interface DNAAIResult {
 }
 
 export async function POST() {
-  if (signals.length < 10) {
+  if (observations.length < 10) {
     return NextResponse.json(
-      { error: `Not enough signals. Need at least 10, have ${signals.length}.` },
+      { error: `Not enough observations. Need at least 10, have ${observations.length}.` },
       { status: 400 }
     );
   }
 
-  const signalCorpus = signals
+  const observationCorpus = observations
     .map((s) => `[${s.role}] (${s.category}): ${s.text}`)
     .join('\n');
 
-  const prompt = `You are an organizational intelligence AI. Based on these employee signals from Apex Advisory Group, synthesize an organizational DNA profile.
+  const prompt = `You are an organizational intelligence AI. Based on these employee observations from Apex Advisory Group, synthesize an organizational DNA profile.
 
-Signals:
-${signalCorpus}
+Observations:
+${observationCorpus}
 
 Return JSON only:
 {
-  "profile": "<3-4 sentence narrative describing the organization's character, values, tensions, and operating style as revealed by signal patterns>",
+  "profile": "<3-4 sentence narrative describing the organization's character, values, tensions, and operating style as revealed by observation patterns>",
   "traits": ["<trait 1>", "<trait 2>", "<trait 3>", "<trait 4>", "<trait 5>", "<trait 6>"]
 }
 
@@ -62,7 +62,7 @@ Traits should be short (2-4 words each), like "Execution-Oriented", "Risk-Aware"
       generatedAt: new Date().toISOString(),
       profile: result.profile,
       traits: result.traits,
-      signalCount: signals.length,
+      observationCount: observations.length,
     };
 
     setOrgDNA(dna);

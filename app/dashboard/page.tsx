@@ -1,16 +1,16 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import SignalCard from '@/components/SignalCard';
+import ObservationCard from '@/components/ObservationCard';
 import StrategyCard from '@/components/StrategyCard';
 import PatternInsight from '@/components/PatternInsight';
 import VelocityAlertBanner from '@/components/VelocityAlertBanner';
 import { patterns } from '@/lib/store';
-import type { Signal, Strategy, VelocityAlert } from '@/lib/types';
+import type { Observation, Strategy, VelocityAlert } from '@/lib/types';
 import { Activity, Target, Users, Brain, RefreshCw } from 'lucide-react';
 
 export default function DashboardPage() {
-  const [signals, setSignals] = useState<Signal[]>([]);
+  const [observations, setObservations] = useState<Observation[]>([]);
   const [strategies, setStrategies] = useState<Strategy[]>([]);
   const [velocityAlertsData, setVelocityAlertsData] = useState<VelocityAlert[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,17 +18,17 @@ export default function DashboardPage() {
 
   const fetchData = useCallback(async () => {
     try {
-      const [signalsRes, strategiesRes, alertsRes] = await Promise.all([
-        fetch('/api/signals'),
+      const [observationsRes, strategiesRes, alertsRes] = await Promise.all([
+        fetch('/api/observations'),
         fetch('/api/strategies'),
         fetch('/api/velocity-alerts'),
       ]);
-      const [signalsData, strategiesData, alertsData] = await Promise.all([
-        signalsRes.json() as Promise<{ signals: Signal[] }>,
+      const [observationsData, strategiesData, alertsData] = await Promise.all([
+        observationsRes.json() as Promise<{ observations: Observation[] }>,
         strategiesRes.json() as Promise<{ strategies: Strategy[] }>,
         alertsRes.json() as Promise<{ alerts: VelocityAlert[] }>,
       ]);
-      setSignals(signalsData.signals);
+      setObservations(observationsData.observations);
       setStrategies(strategiesData.strategies);
       setVelocityAlertsData(alertsData.alerts);
       setLastRefresh(new Date());
@@ -70,8 +70,8 @@ export default function DashboardPage() {
       {/* Stats Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <StatCard
-          label="Signals Captured"
-          value={loading ? '—' : String(signals.length)}
+          label="Observations Captured"
+          value={loading ? '—' : String(observations.length)}
           icon={<Activity className="w-4 h-4 text-cyan-400" />}
           color="text-cyan-400"
         />
@@ -97,10 +97,10 @@ export default function DashboardPage() {
 
       {/* Main Content Grid */}
       <div className="grid lg:grid-cols-5 gap-6 mb-8">
-        {/* Signal Feed (60%) */}
+        {/* Observation Feed (60%) */}
         <div className="lg:col-span-3">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-white">Live Signal Feed</h2>
+            <h2 className="text-lg font-semibold text-white">Live Observation Feed</h2>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               <span className="text-xs text-white/40">
@@ -117,8 +117,8 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
-              {signals.map((signal) => (
-                <SignalCard key={signal.id} signal={signal} />
+              {observations.map((observation) => (
+                <ObservationCard key={observation.id} observation={observation} />
               ))}
             </div>
           )}

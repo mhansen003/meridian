@@ -48,7 +48,7 @@ export default function AskPage() {
         <h1 className="text-3xl font-bold text-white">Ask the Organization</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
-        Ask any question and get an answer grounded in your organization&apos;s signal data.
+        Ask any question and get an answer grounded in your organization&apos;s observation data.
       </p>
 
       <form onSubmit={(e) => { void handleAsk(e); }} className="mb-8">
@@ -92,7 +92,7 @@ export default function AskPage() {
                 />
               ))}
             </div>
-            <p className="text-sm text-blue-300">Searching organizational signals...</p>
+            <p className="text-sm text-blue-300">Searching organizational observations...</p>
           </div>
         </div>
       )}
@@ -107,7 +107,7 @@ export default function AskPage() {
           <p className="text-white/90 leading-relaxed mb-4">{currentAnswer.answer}</p>
           {currentAnswer.citations.length > 0 && (
             <div>
-              <p className="text-xs text-white/30 uppercase tracking-wider mb-2">Signal Citations</p>
+              <p className="text-xs text-white/30 uppercase tracking-wider mb-2">Observation Citations</p>
               <div className="flex gap-2 flex-wrap">
                 {currentAnswer.citations.map((cit) => (
                   <span key={cit} className="px-2 py-0.5 rounded-full bg-white/8 text-white/50 text-xs font-mono">

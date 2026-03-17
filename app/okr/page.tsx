@@ -46,10 +46,10 @@ export default function OKRPage() {
     <div className="max-w-3xl mx-auto px-6 py-8">
       <div className="flex items-center gap-2 mb-2">
         <Target className="w-5 h-5 text-blue-400" />
-        <h1 className="text-3xl font-bold text-white">OKR Signal Synthesis</h1>
+        <h1 className="text-3xl font-bold text-white">OKR Observation Synthesis</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
-        Paste your OKR text and Meridian will map each key result to signal categories and suggest employee prompts for your next Pulse campaign.
+        Paste your OKR text and Meridian will map each key result to observation categories and suggest employee prompts for your next Capture campaign.
       </p>
 
       <form onSubmit={(e) => { void handleSynthesize(e); }} className="mb-8">
@@ -95,7 +95,7 @@ export default function OKRPage() {
                 <h3 className="text-sm font-semibold text-white mb-3">{kr.title}</h3>
 
                 <div className="mb-4">
-                  <p className="text-xs text-white/40 uppercase tracking-wider mb-2">Signal Categories</p>
+                  <p className="text-xs text-white/40 uppercase tracking-wider mb-2">Observation Categories</p>
                   <div className="flex gap-2 flex-wrap">
                     {kr.categories.map((cat) => (
                       <span key={cat} className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${CATEGORY_COLORS[cat as SignalCategory] ?? 'bg-gray-500/20 text-gray-300'}`}>
@@ -106,7 +106,7 @@ export default function OKRPage() {
                 </div>
 
                 <div>
-                  <p className="text-xs text-white/40 uppercase tracking-wider mb-2">Use these prompts in your next Pulse campaign</p>
+                  <p className="text-xs text-white/40 uppercase tracking-wider mb-2">Use these prompts in your next Capture campaign</p>
                   <ul className="space-y-1.5">
                     {kr.prompts.map((prompt, j) => (
                       <li key={j} className="flex gap-2 text-sm text-white/70">

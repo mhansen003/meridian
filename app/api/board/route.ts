@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { signals, strategies, patterns, driftScores, boardPackages } from '@/lib/store';
+import { observations, strategies, patterns, driftScores, boardPackages } from '@/lib/store';
 import type { BoardPackage } from '@/lib/types';
 
 export async function GET() {
@@ -22,7 +22,7 @@ interface BoardAIResult {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as BoardBody;
 
-  const signalContext = signals
+  const observationContext = observations
     .slice(-40)
     .map((s) => `[${s.role}] (${s.category}): ${s.text}`)
     .join('\n');
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     .join('\n');
 
   const patternContext = patterns
-    .map((p) => `- ${p.title} [${p.confidence} confidence, ${p.signalCount} signals]`)
+    .map((p) => `- ${p.title} [${p.confidence} confidence, ${p.observationCount} observations]`)
     .join('\n');
 
   const driftContext = driftScores.length > 0
@@ -52,8 +52,8 @@ ${patternContext}
 Strategy Drift Analysis:
 ${driftContext}
 
-Recent Signals (${signals.length} total):
-${signalContext}
+Recent Observations (${observations.length} total):
+${observationContext}
 
 Generate a comprehensive board intelligence package. Return JSON only:
 {

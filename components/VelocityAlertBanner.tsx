@@ -20,7 +20,7 @@ export default function VelocityAlertBanner({ alert }: VelocityAlertBannerProps)
         <p className="text-sm text-amber-300">
           <span className="font-semibold">Fast-moving pattern:</span>{' '}
           <span className="font-medium">{alert.theme}</span>{' '}
-          &mdash; {alert.signalIds.length + 1} signals in the last 24 hours
+          &mdash; {alert.observationIds.length + 1} observations in the last 24 hours
         </p>
       </div>
       <button

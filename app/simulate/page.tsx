@@ -64,7 +64,7 @@ export default function SimulatePage() {
         <h1 className="text-3xl font-bold text-white">Strategy Simulation</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
-        Test a strategy against your organization&apos;s current signal patterns before committing.
+        Test a strategy against your organization&apos;s current observation patterns before committing.
       </p>
 
       <form onSubmit={(e) => { void handleSimulate(e); }} className="mb-8">
@@ -74,7 +74,7 @@ export default function SimulatePage() {
             value={strategyText}
             onChange={(e) => setStrategyText(e.target.value)}
             rows={4}
-            placeholder="Describe the strategy you want to test against current organizational signals..."
+            placeholder="Describe the strategy you want to test against current organizational observations..."
             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none focus:ring-1 focus:ring-blue-500/30 text-white placeholder-white/25 text-sm resize-none transition-all"
           />
         </div>

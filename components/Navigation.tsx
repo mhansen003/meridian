@@ -8,7 +8,7 @@ import { Building2, ChevronDown } from 'lucide-react';
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard' },
   { href: '/strategy', label: 'Strategy' },
-  { href: '/pulse', label: 'Pulse' },
+  { href: '/capture', label: 'Capture' },
   { href: '/insights', label: 'Insights' },
 ];
 
@@ -17,7 +17,7 @@ const toolsMenu = [
     section: 'Intelligence',
     items: [
       { href: '/ask', label: 'Ask the Organization' },
-      { href: '/trends', label: 'Signal Trends' },
+      { href: '/trends', label: 'Observation Trends' },
       { href: '/map', label: 'Intelligence Map' },
       { href: '/dna', label: 'DNA Profile' },
     ],

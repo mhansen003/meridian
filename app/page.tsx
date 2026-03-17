@@ -25,7 +25,7 @@ export default function HomePage() {
         {/* Subtitle */}
         <p className="text-center text-lg md:text-xl text-white/50 max-w-2xl mb-10 leading-relaxed">
           Meridian closes the loop between executive strategy and frontline execution —
-          capturing signal from the ground up and translating strategy from the top down.
+          capturing observation from the ground up and translating strategy from the top down.
         </p>
 
         {/* CTAs */}
@@ -38,10 +38,10 @@ export default function HomePage() {
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
-            href="/pulse"
+            href="/capture"
             className="flex items-center gap-2 px-6 py-3 rounded-xl border border-white/15 hover:border-white/30 text-white/80 hover:text-white font-semibold transition-all hover:bg-white/5"
           >
-            Submit a Signal
+            Submit a Capture
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -63,7 +63,7 @@ export default function HomePage() {
           <div className="relative w-32 h-16 flex items-center justify-center">
             <div className="absolute inset-0 rounded-xl bg-white/5" />
             <div className="relative z-10 text-xs font-bold text-white/60 uppercase tracking-widest">Meridian</div>
-            {/* Pulse dot */}
+            {/* Capture dot */}
             <div className="absolute top-2 right-2 flex items-center gap-1">
               <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
             </div>
@@ -77,12 +77,12 @@ export default function HomePage() {
 
           {/* Bottom node */}
           <div className="px-6 py-3 rounded-xl bg-cyan-500/15 text-cyan-300 text-sm font-semibold">
-            Frontline Signal
+            Frontline Observation
           </div>
         </div>
 
         {/* Tagline under diagram */}
-        <p className="mt-6 text-sm text-white/30 italic">Where strategy meets signal.</p>
+        <p className="mt-6 text-sm text-white/30 italic">Where strategy meets observation.</p>
       </section>
 
       {/* Feature Cards */}
@@ -91,10 +91,10 @@ export default function HomePage() {
           <FeatureCard
             icon={<Radio className="w-6 h-6 text-cyan-400" />}
             iconBg="bg-cyan-500/15"
-            title="Capture Signal"
+            title="Capture Observation"
             description="Frictionless micro-moment prompts that turn employee observation into organizational intelligence."
-            href="/pulse"
-            linkText="Open Pulse"
+            href="/capture"
+            linkText="Open Capture"
           />
           <FeatureCard
             icon={<Target className="w-6 h-6 text-blue-400" />}
@@ -108,7 +108,7 @@ export default function HomePage() {
             icon={<RefreshCw className="w-6 h-6 text-violet-400" />}
             iconBg="bg-violet-500/15"
             title="Close the Loop"
-            description="Every signal and outcome feeds back in, building a living map of how your organization actually works."
+            description="Every observation and outcome feeds back in, building a living map of how your organization actually works."
             href="/insights"
             linkText="View Insights"
           />

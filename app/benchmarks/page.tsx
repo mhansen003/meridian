@@ -19,7 +19,7 @@ export default function BenchmarksPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  const signalCapture = data.find((d) => d.category === 'Signal Capture Rate');
+  const observationCapture = data.find((d) => d.category === 'Observation Capture Rate');
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
@@ -40,13 +40,13 @@ export default function BenchmarksPage() {
           <BenchmarksChart data={data} />
 
           {/* Callout card */}
-          {signalCapture && (
+          {observationCapture && (
             <div className="mt-6 p-5 rounded-xl border border-amber-500/25 bg-amber-500/8">
               <p className="text-sm font-semibold text-amber-300 mb-1">
-                Your signal capture rate is in the {signalCapture.percentile}th percentile — below the professional services median
+                Your observation capture rate is in the {observationCapture.percentile}th percentile — below the professional services median
               </p>
               <p className="text-xs text-white/40">
-                Industry median: {signalCapture.industryMedian} · Your score: {signalCapture.orgScore}
+                Industry median: {observationCapture.industryMedian} · Your score: {observationCapture.orgScore}
               </p>
             </div>
           )}
@@ -57,15 +57,15 @@ export default function BenchmarksPage() {
             <ul className="space-y-2">
               <li className="flex gap-2 text-sm text-white/60">
                 <span className="text-blue-400 shrink-0">→</span>
-                Your cross-role coverage (88th percentile) is a competitive advantage — most firms struggle to capture signals from all organizational levels.
+                Your cross-role coverage (88th percentile) is a competitive advantage — most firms struggle to capture observations from all organizational levels.
               </li>
               <li className="flex gap-2 text-sm text-white/60">
                 <span className="text-amber-400 shrink-0">→</span>
-                Decision Memory Rate at 28th percentile suggests decisions are being made without systematic signal context — a gap that compounds over time.
+                Decision Memory Rate at 28th percentile suggests decisions are being made without systematic observation context — a gap that compounds over time.
               </li>
               <li className="flex gap-2 text-sm text-white/60">
                 <span className="text-emerald-400 shrink-0">→</span>
-                Pattern Detection Velocity at 72nd percentile means you&apos;re identifying patterns faster than most peers — accelerate this by increasing signal volume.
+                Pattern Detection Velocity at 72nd percentile means you&apos;re identifying patterns faster than most peers — accelerate this by increasing observation volume.
               </li>
             </ul>
           </div>

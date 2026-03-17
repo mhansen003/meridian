@@ -9,14 +9,14 @@ interface PatternSummary {
   id: string;
   title: string;
   confidence: 'High' | 'Medium' | 'Low';
-  signalCount: number;
+  observationCount: number;
   category: SignalCategory;
   relatedStrategy: string;
 }
 
 const MOCK_PARTNER_ORGS = [
-  { name: 'Thornfield Consulting', signals: 142, patterns: 9, lastActive: '2 hours ago' },
-  { name: 'Vantage Advisory Partners', signals: 87, patterns: 5, lastActive: '1 day ago' },
+  { name: 'Thornfield Consulting', observations: 142, patterns: 9, lastActive: '2 hours ago' },
+  { name: 'Vantage Advisory Partners', observations: 87, patterns: 5, lastActive: '1 day ago' },
 ];
 
 export default function AdminPage() {
@@ -76,7 +76,7 @@ export default function AdminPage() {
                 <tr className="border-b border-white/8 bg-white/3">
                   <th className="text-left px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wider">Pattern</th>
                   <th className="text-left px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wider">Category</th>
-                  <th className="text-left px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wider">Signals</th>
+                  <th className="text-left px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wider">Observations</th>
                   <th className="text-left px-4 py-3 text-xs font-semibold text-white/40 uppercase tracking-wider">Confidence</th>
                 </tr>
               </thead>
@@ -87,7 +87,7 @@ export default function AdminPage() {
                     <td className="px-4 py-3">
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${CATEGORY_COLORS[p.category]}`}>{p.category}</span>
                     </td>
-                    <td className="px-4 py-3 text-sm text-white/50 font-mono">{p.signalCount}</td>
+                    <td className="px-4 py-3 text-sm text-white/50 font-mono">{p.observationCount}</td>
                     <td className="px-4 py-3">
                       <span className={`text-xs font-medium ${p.confidence === 'High' ? 'text-emerald-400' : p.confidence === 'Medium' ? 'text-amber-400' : 'text-white/40'}`}>
                         {p.confidence}
@@ -117,8 +117,8 @@ export default function AdminPage() {
               </div>
               <div className="grid grid-cols-3 gap-3 text-center">
                 <div>
-                  <p className="text-xl font-bold text-white">{org.signals}</p>
-                  <p className="text-xs text-white/30">Signals</p>
+                  <p className="text-xl font-bold text-white">{org.observations}</p>
+                  <p className="text-xs text-white/30">Observations</p>
                 </div>
                 <div>
                   <p className="text-xl font-bold text-white">{org.patterns}</p>

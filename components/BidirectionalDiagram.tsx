@@ -46,9 +46,9 @@ export default function BidirectionalDiagram() {
         <div className="w-0.5 h-6 bg-gradient-to-t from-cyan-400 to-blue-500 animate-[flowUp_1.8s_ease-in-out_infinite_0.9s]" />
       </div>
 
-      {/* Frontline Signal */}
+      {/* Frontline Observation */}
       <div className="px-6 py-3 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 text-sm font-semibold shadow-lg shadow-cyan-500/10">
-        Frontline Signal
+        Frontline Observation
       </div>
 
       {/* Side labels */}
