@@ -11,7 +11,7 @@ export default function StrategyCard({ strategy, showTranslations = false }: Str
   const hasTranslations = strategy.translations && strategy.translations.length > 0;
 
   return (
-    <div className="p-4 rounded-xl border border-white/8 bg-white/3 hover:bg-white/5 transition-all">
+    <div className="p-4 rounded-xl bg-[#13161f] hover:bg-[#161a24] transition-all">
       <div className="flex items-start gap-3">
         <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center shrink-0 mt-0.5">
           <Target className="w-4 h-4 text-blue-400" />
@@ -29,18 +29,16 @@ export default function StrategyCard({ strategy, showTranslations = false }: Str
       </div>
 
       {showTranslations && hasTranslations && (
-        <div className="mt-3 pt-3 border-t border-white/8">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-xs text-emerald-400 font-medium">
-              Translated to {strategy.translations!.length} roles
-            </span>
-          </div>
+        <div className="mt-3 flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-xs text-emerald-400 font-medium">
+            Translated to {strategy.translations!.length} roles
+          </span>
         </div>
       )}
 
       {!hasTranslations && (
-        <div className="mt-3 pt-3 border-t border-white/8">
+        <div className="mt-3">
           <span className="text-xs text-white/30">Pending translation</span>
         </div>
       )}

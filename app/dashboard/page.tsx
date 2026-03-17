@@ -177,7 +177,7 @@ function StatCard({
   color: string;
 }) {
   return (
-    <div className="p-4 rounded-xl border border-white/8 bg-white/3">
+    <div className="p-4 rounded-xl bg-[#13161f]">
       <div className="flex items-center justify-between mb-2">
         {icon}
         <span className={`text-2xl font-bold ${color}`}>{value}</span>

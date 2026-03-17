@@ -37,7 +37,23 @@
   }
 
   .border-subtle {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  /* Card panel — preferred over bordered cards */
+  .panel {
+    background-color: #13161f;
+    border-radius: 0.75rem;
+  }
+
+  .panel-hover {
+    background-color: #13161f;
+    border-radius: 0.75rem;
+    transition: background-color 0.15s;
+  }
+
+  .panel-hover:hover {
+    background-color: #161a24;
   }
 }
 

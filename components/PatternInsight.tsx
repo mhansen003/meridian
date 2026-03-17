@@ -17,7 +17,7 @@ export default function PatternInsight({ pattern }: PatternInsightProps) {
   const ConfIcon = conf.icon;
 
   return (
-    <div className="p-5 rounded-xl border border-white/10 bg-white/3 hover:bg-white/5 transition-all">
+    <div className="p-5 rounded-xl bg-[#13161f] hover:bg-[#161a24] transition-all">
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-2">
           <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${CATEGORY_COLORS[pattern.category]}`}>
@@ -38,7 +38,7 @@ export default function PatternInsight({ pattern }: PatternInsightProps) {
         {pattern.title}
       </h3>
 
-      <div className="mt-3 pt-3 border-t border-white/8">
+      <div className="mt-4">
         <div className="flex items-start gap-2">
           <Zap className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
           <div>

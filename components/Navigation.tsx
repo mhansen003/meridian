@@ -70,8 +70,10 @@ export default function Navigation() {
     setOpen(false);
   }, [pathname]);
 
+  if (pathname === '/splash') return null;
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0f1117]/95 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f1117]/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
@@ -144,7 +146,7 @@ export default function Navigation() {
         </div>
 
         {/* Org Pill */}
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5">
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5">
           <Building2 className="w-3.5 h-3.5 text-cyan-400" />
           <span className="text-xs text-white/70 font-medium">Apex Advisory Group</span>
         </div>

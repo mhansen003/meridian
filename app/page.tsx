@@ -49,7 +49,7 @@ export default function HomePage() {
         {/* Animated bidirectional diagram */}
         <div className="relative flex flex-col items-center">
           {/* Top node */}
-          <div className="px-6 py-3 rounded-xl border border-blue-500/40 bg-blue-500/10 text-blue-300 text-sm font-semibold">
+          <div className="px-6 py-3 rounded-xl bg-blue-500/15 text-blue-300 text-sm font-semibold">
             Executive Strategy
           </div>
 
@@ -61,7 +61,7 @@ export default function HomePage() {
 
           {/* Center */}
           <div className="relative w-32 h-16 flex items-center justify-center">
-            <div className="absolute inset-0 rounded-xl border border-white/10 bg-white/3" />
+            <div className="absolute inset-0 rounded-xl bg-white/5" />
             <div className="relative z-10 text-xs font-bold text-white/60 uppercase tracking-widest">Meridian</div>
             {/* Pulse dot */}
             <div className="absolute top-2 right-2 flex items-center gap-1">
@@ -76,7 +76,7 @@ export default function HomePage() {
           </div>
 
           {/* Bottom node */}
-          <div className="px-6 py-3 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-300 text-sm font-semibold">
+          <div className="px-6 py-3 rounded-xl bg-cyan-500/15 text-cyan-300 text-sm font-semibold">
             Frontline Signal
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/8 py-8 px-6 text-center">
+      <footer className="py-8 px-6 text-center">
         <p className="text-sm text-white/25">
           Built for organizations that take execution seriously. &nbsp;·&nbsp; Apex Advisory Group Demo
         </p>
@@ -146,7 +146,7 @@ function FeatureCard({
   linkText: string;
 }) {
   return (
-    <div className="group p-6 rounded-2xl border border-white/8 bg-white/3 hover:bg-white/5 hover:border-white/15 transition-all">
+    <div className="group p-6 rounded-2xl bg-[#13161f] hover:bg-[#161a24] transition-all">
       <div className={`w-12 h-12 rounded-xl ${iconBg} flex items-center justify-center mb-4`}>
         {icon}
       </div>
