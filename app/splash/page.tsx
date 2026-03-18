@@ -6,9 +6,10 @@ export default function SplashPage() {
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center bg-[#0a0c12]">
       <img
-        src="/splash-artwork.png"
+        src="/logo.png"
         alt="Meridian"
-        className="w-36 h-36 md:w-48 md:h-48 object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.35)] mb-8"
+        className="w-40 md:w-52 h-auto object-contain drop-shadow-[0_0_48px_rgba(59,130,246,0.5)] mb-8"
+        style={{ mixBlendMode: 'screen' }}
       />
 
       <Link
