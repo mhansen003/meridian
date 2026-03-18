@@ -8,7 +8,7 @@ export default function SplashPage() {
       <img
         src="/splash-artwork.png"
         alt="Meridian"
-        className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-[0_0_60px_rgba(59,130,246,0.35)] mb-10"
+        className="w-36 h-36 md:w-48 md:h-48 object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.35)] mb-8"
       />
 
       <Link
