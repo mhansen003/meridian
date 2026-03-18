@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function SplashPage() {
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center bg-[#0a0c12]">
+    <div className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center bg-[#0a0c12]">
       <img
         src="/logo.png"
         alt="Meridian"

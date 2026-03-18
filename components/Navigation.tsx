@@ -19,10 +19,10 @@ export default function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0f1117]/95 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <img src="/logo.png" alt="Meridian" className="w-8 h-8 object-contain" />
+          <img src="/logo.png" alt="Meridian" className="w-16 h-16 object-contain" />
           <span className="font-semibold text-white tracking-tight">Meridian</span>
         </Link>
 
