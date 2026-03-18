@@ -77,9 +77,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-blue-500/25">
-            M
-          </div>
+          <img src="/logo.png" alt="Meridian" className="w-8 h-8 object-contain" />
           <span className="font-semibold text-white tracking-tight">Meridian</span>
         </Link>
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Radio, Target, RefreshCw, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
+import { ArrowRight, Radio, Target, RefreshCw } from 'lucide-react';
 
 export default function HomePage() {
   return (
@@ -46,42 +46,19 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Animated bidirectional diagram */}
-        <div className="relative flex flex-col items-center">
-          {/* Top node */}
-          <div className="px-6 py-3 rounded-xl bg-blue-500/15 text-blue-300 text-sm font-semibold">
-            Executive Strategy
-          </div>
-
-          {/* Down flow */}
-          <div className="flex flex-col items-center my-2">
-            <ArrowDownCircle className="w-5 h-5 text-blue-400 animate-bounce" />
-            <div className="w-px h-8 bg-gradient-to-b from-blue-500/60 to-cyan-400/60" />
-          </div>
-
-          {/* Center */}
-          <div className="relative w-32 h-16 flex items-center justify-center">
-            <div className="absolute inset-0 rounded-xl bg-white/5" />
-            <div className="relative z-10 text-xs font-bold text-white/60 uppercase tracking-widest">Meridian</div>
-            {/* Capture dot */}
-            <div className="absolute top-2 right-2 flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-            </div>
-          </div>
-
-          {/* Up flow */}
-          <div className="flex flex-col items-center my-2">
-            <div className="w-px h-8 bg-gradient-to-t from-cyan-500/60 to-blue-400/60" />
-            <ArrowUpCircle className="w-5 h-5 text-cyan-400 animate-bounce" style={{ animationDelay: '0.5s' }} />
-          </div>
-
-          {/* Bottom node */}
-          <div className="px-6 py-3 rounded-xl bg-cyan-500/15 text-cyan-300 text-sm font-semibold">
-            Frontline Observation
-          </div>
+        {/* Logo mark + bidirectional labels */}
+        <div className="relative flex flex-col items-center gap-3">
+          <div className="text-xs font-semibold tracking-widest uppercase text-blue-400/70">Executive Strategy</div>
+          <div className="w-px h-5 bg-gradient-to-b from-blue-500/50 to-transparent" />
+          <img
+            src="/logo.png"
+            alt="Meridian"
+            className="w-20 h-20 object-contain drop-shadow-[0_0_32px_rgba(59,130,246,0.45)]"
+          />
+          <div className="w-px h-5 bg-gradient-to-t from-cyan-500/50 to-transparent" />
+          <div className="text-xs font-semibold tracking-widest uppercase text-cyan-400/70">Frontline Observation</div>
         </div>
 
-        {/* Tagline under diagram */}
         <p className="mt-6 text-sm text-white/30 italic">Where strategy meets observation.</p>
       </section>
 

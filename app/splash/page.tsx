@@ -19,6 +19,7 @@ export default function SplashPage() {
 
       {/* Content anchored to bottom */}
       <div className="relative z-10 flex flex-col items-center pb-20 w-full px-6">
+        <img src="/logo.png" alt="Meridian" className="w-16 h-16 object-contain mb-5 drop-shadow-[0_0_24px_rgba(59,130,246,0.6)]" />
         <p className="text-xs font-semibold tracking-[0.3em] uppercase text-white/40 mb-3">
           Organizational Intelligence
         </p>
