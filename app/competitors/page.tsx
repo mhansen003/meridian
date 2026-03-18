@@ -56,7 +56,7 @@ export default function CompetitorsPage() {
       <div className="max-w-4xl mx-auto px-6 py-8">
         <div className="flex items-center gap-2 mb-8">
           <Shield className="w-5 h-5 text-orange-400" />
-          <h1 className="text-3xl font-bold text-white">Competitor Intelligence</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-white">Competitor Intelligence</h1>
         </div>
         <div className="space-y-4">
           {[...Array(2)].map((_, i) => <div key={i} className="h-32 rounded-xl bg-white/3 animate-pulse" />)}
@@ -69,7 +69,7 @@ export default function CompetitorsPage() {
     <div className="max-w-4xl mx-auto px-6 py-8">
       <div className="flex items-center gap-2 mb-2">
         <Shield className="w-5 h-5 text-orange-400" />
-        <h1 className="text-3xl font-bold text-white">Competitor Intelligence</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">Competitor Intelligence</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
         Observations tagged with competitor mentions, synthesized into competitive dossiers.
@@ -124,7 +124,7 @@ export default function CompetitorsPage() {
                 {dossier && (
                   <div className="px-5 pb-5 border-t border-white/8 pt-4">
                     <p className="text-sm text-white/80 leading-relaxed mb-4">{dossier.summary}</p>
-                    <div className="grid md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div>
                         <p className="text-xs text-emerald-400 uppercase tracking-wider mb-2">Strengths</p>
                         <ul className="space-y-1.5">

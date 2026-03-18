@@ -64,7 +64,7 @@ export default function HomePage() {
 
       {/* Feature Cards */}
       <section className="max-w-6xl mx-auto px-6 pb-24">
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <FeatureCard
             icon={<Radio className="w-6 h-6 text-cyan-400" />}
             iconBg="bg-cyan-500/15"

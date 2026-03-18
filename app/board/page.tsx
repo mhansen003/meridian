@@ -70,7 +70,7 @@ export default function BoardPage() {
     <div className="max-w-4xl mx-auto px-6 py-8">
       <div className="flex items-center gap-2 mb-2">
         <FileText className="w-5 h-5 text-blue-400" />
-        <h1 className="text-3xl font-bold text-white">Board Intelligence Package</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">Board Intelligence Package</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
         AI-generated board-ready intelligence synthesis from your organizational observation data.
@@ -138,7 +138,7 @@ export default function BoardPage() {
             <p className="text-sm text-white/80 leading-relaxed">{displayPackage.strategyHealth}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl border border-red-500/20 bg-red-500/5">
               <p className="text-xs text-red-400 uppercase tracking-wider mb-3">Key Risks</p>
               <ul className="space-y-2">

@@ -55,12 +55,12 @@ export default function DashboardPage() {
       {/* Header */}
       <div className="flex items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-1">Intelligence Dashboard</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-1">Intelligence Dashboard</h1>
           <p className="text-white/40 text-sm">Apex Advisory Group &middot; Live organizational intelligence feed</p>
         </div>
         <button
           onClick={() => { void fetchData(); }}
-          className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 hover:border-white/20 text-white/50 hover:text-white/80 text-xs transition-all"
+          className="flex items-center gap-2 px-3 py-2 min-h-[44px] rounded-lg border border-white/10 hover:border-white/20 text-white/50 hover:text-white/80 text-xs transition-all"
         >
           <RefreshCw className="w-3.5 h-3.5" />
           Refresh
@@ -155,7 +155,7 @@ export default function DashboardPage() {
             AI-Detected
           </span>
         </div>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {patterns.slice(0, 3).map((pattern) => (
             <PatternInsight key={pattern.id} pattern={pattern} />
           ))}

@@ -41,13 +41,13 @@ export default function IntegrationsPage() {
     <div className="max-w-3xl mx-auto px-6 py-8">
       <div className="flex items-center gap-2 mb-2">
         <Link2 className="w-5 h-5 text-blue-400" />
-        <h1 className="text-3xl font-bold text-white">Integrations</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">Integrations</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
         Connect Meridian to your existing tools to automatically capture observations from conversations, deals, and team activity.
       </p>
 
-      <div className="grid md:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Slack */}
         <div className="p-5 rounded-2xl border border-white/10 bg-white/3">
           <div className="flex items-start justify-between mb-4">

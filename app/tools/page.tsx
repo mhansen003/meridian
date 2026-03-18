@@ -138,7 +138,7 @@ export default function ToolsPage() {
     <div className="max-w-7xl mx-auto px-6 py-10">
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-white mb-2">Intelligence Tools</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Intelligence Tools</h1>
         <p className="text-white/40 text-sm max-w-xl">
           The full Meridian surface — every tool for capturing, translating, and acting on organizational intelligence.
         </p>
@@ -151,7 +151,7 @@ export default function ToolsPage() {
             <h2 className="text-xs font-semibold tracking-widest uppercase text-white/30 mb-4">
               {group.section}
             </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {group.tools.map((tool) => {
                 const Icon = tool.icon;
                 return (

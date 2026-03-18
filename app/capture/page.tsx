@@ -110,7 +110,7 @@ export default function CapturePage() {
       {/* Header */}
       <div className="flex items-center gap-2 mb-2">
         <Radio className="w-5 h-5 text-cyan-400" />
-        <h1 className="text-3xl font-bold text-white">What are you seeing?</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">What are you seeing?</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
         Share a micro-moment observation. Your capture feeds the organizational intelligence map.
@@ -135,7 +135,7 @@ export default function CapturePage() {
       {/* Prompt Suggestions */}
       <div className="mb-4">
         <p className="text-xs text-white/40 mb-2 uppercase tracking-wider">Quick prompts</p>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           {PROMPT_SUGGESTIONS.map((prompt) => (
             <button
               key={prompt.label}

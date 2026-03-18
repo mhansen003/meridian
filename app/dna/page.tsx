@@ -55,7 +55,7 @@ export default function DNAPage() {
       <div className="max-w-2xl mx-auto px-6 py-8">
         <div className="flex items-center gap-2 mb-8">
           <Dna className="w-5 h-5 text-violet-400" />
-          <h1 className="text-3xl font-bold text-white">Organizational DNA Profile</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-white">Organizational DNA Profile</h1>
         </div>
         <div className="h-64 rounded-xl bg-white/3 animate-pulse" />
       </div>
@@ -66,7 +66,7 @@ export default function DNAPage() {
     <div className="max-w-2xl mx-auto px-6 py-8">
       <div className="flex items-center gap-2 mb-2">
         <Dna className="w-5 h-5 text-violet-400" />
-        <h1 className="text-3xl font-bold text-white">Organizational DNA Profile</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">Organizational DNA Profile</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
         AI-synthesized profile of your organization&apos;s character, values, and operating patterns.
@@ -80,7 +80,7 @@ export default function DNAPage() {
         <div className="p-8 rounded-2xl border border-violet-500/20 bg-violet-500/5 text-center">
           <Dna className="w-12 h-12 text-violet-400/40 mx-auto mb-4" />
           <p className="text-white/60 mb-2">Generate your DNA Profile from</p>
-          <p className="text-3xl font-bold text-white mb-2">{observationCount}</p>
+          <p className="text-2xl md:text-3xl font-bold text-white mb-2">{observationCount}</p>
           <p className="text-white/40 text-sm mb-6">captured observations</p>
           <button
             onClick={() => { void handleGenerate(); }}

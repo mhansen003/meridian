@@ -82,7 +82,7 @@ export default function StrategyPage() {
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-2">
           <Target className="w-5 h-5 text-blue-400" />
-          <h1 className="text-3xl font-bold text-white">Strategy Translation</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-white">Strategy Translation</h1>
         </div>
         <p className="text-white/40 text-sm">
           Enter a strategic priority and AI will translate it into role-specific guidance for all 8 roles.
@@ -152,7 +152,7 @@ export default function StrategyPage() {
             <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />
             <span className="text-sm text-white/50">Generating role-specific guidance...</span>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[...Array(8)].map((_, i) => (
               <div key={i} className="h-40 rounded-xl skeleton" />
             ))}
@@ -169,7 +169,7 @@ export default function StrategyPage() {
               {translations.length} roles
             </span>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {translations.map((t, i) => (
               <RoleTranslationCard key={t.role} translation={t} index={i} />
             ))}
@@ -204,7 +204,7 @@ export default function StrategyPage() {
 
                 {expandedStrategy === strategy.id && strategy.translations && (
                   <div className="p-4 pt-0 border-t border-white/8">
-                    <div className="grid md:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {strategy.translations.map((t, i) => (
                         <RoleTranslationCard key={t.role} translation={t} index={i} />
                       ))}

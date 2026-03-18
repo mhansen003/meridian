@@ -61,7 +61,7 @@ export default function SimulatePage() {
     <div className="max-w-3xl mx-auto px-6 py-8">
       <div className="flex items-center gap-2 mb-2">
         <Zap className="w-5 h-5 text-blue-400" />
-        <h1 className="text-3xl font-bold text-white">Strategy Simulation</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">Strategy Simulation</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
         Test a strategy against your organization&apos;s current observation patterns before committing.
@@ -105,7 +105,7 @@ export default function SimulatePage() {
           {/* Alignment Score */}
           <div className="p-5 rounded-xl border border-white/10 bg-white/3 text-center">
             <p className="text-xs text-white/40 uppercase tracking-wider mb-1">Alignment Score</p>
-            <p className={`text-6xl font-black ${scoreColor}`}>{result.alignmentScore}</p>
+            <p className={`text-5xl md:text-6xl font-black ${scoreColor}`}>{result.alignmentScore}</p>
             <p className="text-sm text-white/40 mt-1">out of 100</p>
           </div>
 
@@ -115,7 +115,7 @@ export default function SimulatePage() {
             <p className="text-sm text-white/80 leading-relaxed">{result.predictedReaction}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Risks */}
             <div className="p-4 rounded-xl border border-red-500/20 bg-red-500/5">
               <p className="text-xs text-red-400 uppercase tracking-wider mb-3">Risks</p>

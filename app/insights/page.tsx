@@ -96,7 +96,7 @@ export default function InsightsPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Brain className="w-5 h-5 text-violet-400" />
-            <h1 className="text-3xl font-bold text-white">Intelligence Report</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-white">Intelligence Report</h1>
           </div>
           <p className="text-white/40 text-sm">{today}</p>
         </div>
@@ -143,7 +143,7 @@ export default function InsightsPage() {
             {patterns.length} detected
           </span>
         </div>
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {patterns.map((pattern) => (
             <PatternInsight key={pattern.id} pattern={pattern} />
           ))}
@@ -156,7 +156,7 @@ export default function InsightsPage() {
           <Activity className="w-4 h-4 text-cyan-400" />
           <h2 className="text-lg font-semibold text-white">Strategy Drift Detection</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {strategies.map((strategy) => {
             const score = driftScores.find((d) => d.strategyId === strategy.id);
             return (

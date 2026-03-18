@@ -42,7 +42,7 @@ export default function BriefPage() {
     <div className="max-w-2xl mx-auto px-6 py-8">
       <div className="flex items-center gap-2 mb-2">
         <Newspaper className="w-5 h-5 text-cyan-400" />
-        <h1 className="text-3xl font-bold text-white">Your Daily Brief</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-white">Your Daily Brief</h1>
       </div>
       <p className="text-white/40 text-sm mb-8">
         Get a role-specific intelligence briefing grounded in your organization&apos;s live observation data.
