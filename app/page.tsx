@@ -8,7 +8,7 @@ export default function SplashPage() {
       <img
         src="/logo.png"
         alt="Meridian"
-        className="w-40 md:w-52 h-auto object-contain drop-shadow-[0_0_48px_rgba(59,130,246,0.5)] mb-8"
+        className="w-72 md:w-[416px] h-auto object-contain drop-shadow-[0_0_80px_rgba(59,130,246,0.5)] mb-10"
         style={{ mixBlendMode: 'screen' }}
       />
 
