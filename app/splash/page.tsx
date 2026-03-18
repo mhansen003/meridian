@@ -4,34 +4,20 @@ import Link from 'next/link';
 
 export default function SplashPage() {
   return (
-    <div className="relative -mt-16 min-h-screen bg-[#04060d] flex flex-col items-center justify-end overflow-hidden">
-      {/* Full-screen artwork — the hero */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/splash-artwork.png"
-          alt="Meridian"
-          className="w-full h-full object-cover"
-          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-        />
-        {/* Bottom gradient so text reads cleanly */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#04060d] via-[#04060d]/40 to-transparent" />
-      </div>
+    <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center bg-[#0a0c12]">
+      <img
+        src="/splash-artwork.png"
+        alt="Meridian"
+        className="w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-[0_0_60px_rgba(59,130,246,0.35)] mb-10"
+      />
 
-      {/* Content anchored to bottom */}
-      <div className="relative z-10 flex flex-col items-center pb-20 w-full px-6">
-        <img src="/logo.png" alt="Meridian" className="w-16 h-16 object-contain mb-5 drop-shadow-[0_0_24px_rgba(59,130,246,0.6)]" />
-        <p className="text-xs font-semibold tracking-[0.3em] uppercase text-white/40 mb-3">
-          Organizational Intelligence
-        </p>
-
-        <Link
-          href="/dashboard"
-          className="mt-6 group flex items-center gap-3 px-10 py-4 rounded-2xl bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/20 hover:border-white/35 text-white font-semibold tracking-widest uppercase text-sm transition-all"
-        >
-          Enter
-          <span className="text-base group-hover:translate-x-1 transition-transform">→</span>
-        </Link>
-      </div>
+      <Link
+        href="/dashboard"
+        className="group flex items-center gap-3 px-10 py-4 rounded-2xl bg-blue-500 hover:bg-blue-400 text-white font-semibold tracking-wide transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-400/40 hover:-translate-y-0.5"
+      >
+        Launch Dashboard
+        <span className="group-hover:translate-x-1 transition-transform">→</span>
+      </Link>
     </div>
   );
 }
