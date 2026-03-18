@@ -5,10 +5,20 @@ import Link from 'next/link';
 export default function SplashPage() {
   return (
     <div className="min-h-[calc(100vh-5rem)] flex flex-col items-center justify-center bg-[#0a0c12]">
+      <style>{`
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        .logo-spin {
+          animation: spin-slow 12s linear infinite;
+        }
+      `}</style>
+
       <img
         src="/logo.png"
         alt="Meridian"
-        className="w-[576px] md:w-[832px] h-auto object-contain drop-shadow-[0_0_120px_rgba(59,130,246,0.5)] mb-10"
+        className="logo-spin w-[576px] md:w-[832px] h-auto object-contain drop-shadow-[0_0_120px_rgba(59,130,246,0.5)] mb-10"
         style={{ mixBlendMode: 'screen' }}
       />
 
