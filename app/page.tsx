@@ -8,7 +8,7 @@ export default function SplashPage() {
       <style>{`
         @keyframes spin-slow {
           from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
+          to   { transform: rotate(-360deg); }
         }
         .logo-spin {
           animation: spin-slow 12s linear infinite;
